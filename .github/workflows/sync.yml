@@ -11,6 +11,7 @@ on:
     paths:
       - "config.json"             # re-publish immediately when the include-list changes
       - "rtusync/**"
+      - "tools/**"
       - ".github/workflows/**"    # so a change to this file gets exercised at once
 
 permissions:
@@ -32,6 +33,9 @@ jobs:
       # a recent python3. Nothing to install, nothing to pin, nothing to rot.
       - name: Show Python version
         run: python3 --version
+
+      - name: Resolve group id (first run only)
+        run: python3 tools/resolve_group.py
 
       - name: Build planning.ics
         run: python3 -m rtusync build
@@ -63,7 +67,7 @@ jobs:
           # the list from what is really on disk -- git add on a missing path is
           # a fatal error, not a no-op.
           FILES=""
-          for f in planning.ics picker.html state.json changes.md .sync-alive; do
+          for f in config.json planning.ics picker.html state.json changes.md .sync-alive; do
             if [ -f "$f" ]; then FILES="$FILES $f"; fi
           done
           if [ -z "$FILES" ]; then
@@ -77,6 +81,7 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- $FILES
+          [ -f changes.md ] || git rm -q --cached --ignore-unmatch changes.md
           SUBJECT="RTU timetable: $(date -u '+%Y-%m-%d %H:%M')"
           if [ -f changes.md ]; then
             N=$(git diff --cached -U0 -- changes.md | grep -c '^+- `' || true)
