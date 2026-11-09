@@ -8,7 +8,7 @@
   },
 
   "group": {
-    "semester_program_id": 0,
+    "semester_program_id": 40866,
     // Reference only -- these are not used to fetch, they just label the calendar.
     "program_code": "ADBD0",
     "program_title": "Datorsistēmas (Computer Systems)",
