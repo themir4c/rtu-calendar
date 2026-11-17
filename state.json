@@ -1367,9 +1367,17 @@
    "seq": 0,
    "start": "2027-01-08T15:00:00+02:00",
    "subj": "Skaitliskās metodes"
+  },
+  "1825268-119099": {
+   "end": "2026-11-24T09:50:00+02:00",
+   "h": "a89e4eaa909fa770",
+   "room": "Zunda krastmala 10 - 120",
+   "seq": 0,
+   "start": "2026-11-24T08:15:00+02:00",
+   "subj": "Skaitliskās metodes"
   }
  },
  "include_hash": "1766b053bca410fb",
- "updated": "2026-11-09T12:29:38Z",
+ "updated": "2026-11-17T13:23:49Z",
  "version": 1
 }
